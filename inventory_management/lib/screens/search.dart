@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_management/screens/add_product_screen.dart';
 import '../models/category.dart';
-import '../models/product.dart';
 
 class ProductSearchDelegate extends SearchDelegate {
   final List<Category> categories; // List of categories passed in
@@ -9,11 +8,10 @@ class ProductSearchDelegate extends SearchDelegate {
 
   @override
   List<Widget>? buildActions(BuildContext context) {
-    // Action to clear the search query
     return [
       IconButton(
         onPressed: () {
-          query = ''; // Clear the search query
+          query = ''; 
         },
         icon: const Icon(Icons.clear),
       ),
@@ -22,7 +20,6 @@ class ProductSearchDelegate extends SearchDelegate {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    // Leading icon to close the search
     return IconButton(
       onPressed: () {
         close(context, null);
@@ -33,14 +30,12 @@ class ProductSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    // Filter products based on the search query
     final filteredProducts = categories
         .expand((category) => category.products)
         .where((product) =>
             product.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
-    // Display the search results
     return filteredProducts.isEmpty
         ? Center(
             child: Text(
@@ -62,13 +57,11 @@ class ProductSearchDelegate extends SearchDelegate {
                   subtitle: Text('${product.price}\$ - ${product.quantity} available'),
                   trailing: Text('${product.date.toLocal()}'.split(' ')[0]),
                   onTap: () {
-                    // Navigate to the edit screen when a product is tapped
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => NewProduct(
                           onSubmit: (updatedProduct) {
-                            // Update the product in the respective category
                             categories
                                 .expand((category) => category.products)
                                 .firstWhere((p) => p.quantity == product.quantity)
@@ -90,7 +83,6 @@ class ProductSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // Show suggestions by filtering products based on the search query
     final filteredProducts = categories
         .expand((category) => category.products)
         .where((product) =>
@@ -112,8 +104,8 @@ class ProductSearchDelegate extends SearchDelegate {
                 title: Text(product.name),
                 subtitle: Text('${product.price}\$ - ${product.quantity} available'),
                 onTap: () {
-                  query = product.name; // Set the query to the tapped suggestion
-                  showResults(context); // Display the search results
+                  query = product.name; 
+                  showResults(context); 
                 },
               );
             },

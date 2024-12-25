@@ -55,10 +55,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Collect all products from categories for search
-    final List<Product> allProducts =
-        categories.expand((category) => category.products).toList();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Homepage'),

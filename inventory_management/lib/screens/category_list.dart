@@ -38,7 +38,6 @@ class _CategoryPageState extends State<CategoryPage> {
   }
  
 
-  // Navigate to add product screen
   void _navigateToNewProduct() {
     Navigator.push<Product>(
       context,
@@ -52,7 +51,6 @@ class _CategoryPageState extends State<CategoryPage> {
     );
   }
 
-  // Navigate to edit product screen
   void _navigateToEditing(int index) {
     Navigator.push<Product>(
       context,
@@ -67,7 +65,6 @@ class _CategoryPageState extends State<CategoryPage> {
     );
   }
 
-  // Switch modes
   void _setToSelectionMode() {
     setState(() {
       currentState = SwitchMode.selection;
@@ -91,7 +88,6 @@ class _CategoryPageState extends State<CategoryPage> {
     });
   }
 
-  // Remove product
   void _removeProduct(Product product) {
     final List<Product> deletedProduct = List.from(selectedItems);
     setState(() {
